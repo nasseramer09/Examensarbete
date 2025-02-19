@@ -46,7 +46,7 @@ class Table_Creation:
         cursor.execute("""
                         CREATE TABLE IF NOT EXISTS tasks(
                             id INT AUTO_INCREMENT PRIMARY KEY, 
-                            title VARCHAR(250)  NOT NULL,
+                            title VARCHAR(250) NOT NULL,
                             description TEXT,
                             car_id INT,
                             start_adress VARCHAR(250) NOT NULL,
@@ -54,12 +54,12 @@ class Table_Creation:
                             estimated_time INT,
                             status ENUM('planerat', 'pågående', 'klart') DEFAULT 'planerat',
                             FOREIGN KEY (car_id) REFERENCES cars(id) ON DELETE SET NULL
-                            )
+                            )CHARSET=utf8mb4
                     """)
         connection.commit()
         cursor.close()
         connection.close()
-    
+    @staticmethod
     def create_All_Tables():
         Table_Creation.create_users_table()
         Table_Creation.create_cars_table()
