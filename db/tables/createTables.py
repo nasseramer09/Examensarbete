@@ -13,6 +13,7 @@ class Table_Creation:
                     last_name VARCHAR(50) NOT NULL,
                     username VARCHAR(50) UNIQUE NOT NULL,
                     password_hash VARCHAR(255) NOT NULL,
+                    phone_number VARCHAR (50) NOT NULL,
                     role ENUM('admin', 'staff') NOT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )

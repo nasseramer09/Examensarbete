@@ -23,7 +23,7 @@ class AuthenticationServices():
         
 
     @staticmethod
-    def login(userName:str, password:int):
+    def login(userName:str, password):
         conn = DataBaseConnection.get_db_connection()
         cursor=conn.cursor(dictionary=True)
 
@@ -38,7 +38,7 @@ class AuthenticationServices():
         cursor.close()
         conn.close()
 
-        if user and hashlib.sha256(password.encode()).hexdigest()==user['password']:
+        if user and hashlib.sha256(password.encode()).hexdigest()==user['password_hash']:
             return {"message": "Success", "role":user['role']}
         else:
             return{"message":"Wrong username or password "}
