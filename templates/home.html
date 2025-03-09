@@ -2,17 +2,55 @@
 
 {% block head %}
 <div id="header">
-<h1> Welcome to TaskIT </h1>
-</div>
+<h1> Welcome {{ userName }} </h1>
+<nav class="homeNav">
+   <ul>
+  <li> Översikt</li>
+  <li> Schema</li>
+  <li> Personal</li>
+  <li> Arikv</li>
+</ul> 
+<button class="logOut" onclick="loggaout()"> Logga ut </button>
+</nav>
 {% endblock %}
 
 {%block body %}
-<div class="loginForm">
-    <h1>This is a lorem </h1>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi commodi cupiditate fugit facere eius accusantium ad vero quisquam adipisci porro quidem cumque, dolorem architecto aliquam excepturi libero alias magnam numquam?</p>
+<div class="container">
+  <div class="row">
+<div class="card">
+  <h4> Totalt uppdrag </h4>
+  <p id="totalUppdrag"> Loading.... </p>
 </div>
-<div class="recoverPassword">
-    <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias cumque nulla illo adipisci nobis dolorem soluta. Quidem consequuntur esse totam laborum eos aliquam dolores facere saepe fugiat amet, in aut.</h1>
+
+<div class="card">
+  <h4> Activa uppdrag </h4>
+  <p id="activaUppdrag"> Loading.... </p>
+</div>
+
+<div class="card">
+  <h4> Lediga Bilar </h4>
+  <p id="ledigaBilar"> Loading.... </p>
+</div>
+
+  </div>
+</div>
+
+<div class="tasksContainer">
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th> Title </th>
+        <th> Status </th>
+        <th> Deadline </th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <tr>
+        <td colspan="3" class="text-center"> Loading... </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}

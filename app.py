@@ -1,15 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from db.tables.createTables import Table_Creation
 from Backend.services import AuthenticationServices
 
 app = Flask(__name__)
+app.secret_key="SessionKey"
 
 
-#@app.route("/")
-#def landingPage():
- #   return render_template('login.html')
-
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         userName=request.form['username']
@@ -18,14 +15,22 @@ def login():
         loginCheck= AuthenticationServices.login(userName, password)
 
         if loginCheck["message"] == "Success":
-            print('ok')
-            return render_template('home.html')
+            session['username']=userName
+            session['role']=loginCheck['role']
+            return redirect(url_for('checkRole'))
         else:
-            print('inte ok')
-
-            return f"fel användarnamn eller lösenord"
+            
+            return render_template('login.html', error=" fel användarnamn eller lösenord!" )
         
-    return render_template('landingPage.html')
+    return render_template('login.html')
+
+#check the role of the user and redirect to pages aloweed access based on role
+@app.route('/checkRole')
+def checkRole():
+   if 'username' not in session:
+       return redirect(url_for('login'))
+   
+   return render_template('home.html', userName=session['username'], role=session['role'])
 
 if __name__ == '__main__':
     Table_Creation.create_All_Tables()

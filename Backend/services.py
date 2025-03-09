@@ -1,5 +1,4 @@
 import hashlib
-import flask 
 from db.connectionToDataBase import DataBaseConnection
 
 class AuthenticationServices():
