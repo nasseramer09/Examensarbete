@@ -2,19 +2,24 @@
 
 {% block head %}
 <div id="header">
-<h1> Welcome {{ userName }} </h1>
 <nav class="homeNav">
    <ul>
-  <li> Översikt</li>
-  <li> Schema</li>
-  <li> Personal</li>
-  <li> Arikv</li>
+  <li>
+    
+  <a href="#"> Översikt </a>
+  <a href="#"> Schema </a>
+  <a href="#"> Personal </a>
+  <a href="url_for{{('manage_accounts')}} "> Hantera Konton </a>
+  <a href="#"> Arikv </a>
+</li>
 </ul> 
 <button class="logOut" onclick="loggaout()"> Logga ut </button>
 </nav>
+</div>
+
 {% endblock %}
 
-{%block body %}
+{% block body %}
 <div class="container">
   <div class="row">
 <div class="card">
@@ -36,7 +41,7 @@
 </div>
 
 <div class="tasksContainer">
-  <table class="table">
+  <table class="table"> 
 
     <thead>
       <tr>
