@@ -1,16 +1,14 @@
 from flask import Flask
-from db.tables.createTables import Table_Creation
-from Backend.services import AuthenticationServices
+from routes import routes
+import os 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+app.register_blueprint(routes)
+app.secret_key=os.getenv("FLASK_SECRET_KEY", "default_secret")
 
 if __name__ == '__main__':
-    Table_Creation.create_All_Tables()
-    #AuthenticationServices.createAcount("Nasser", "Amer", "namer", "securepassword", "admin")
-    #print(AuthenticationServices.login("namer", "securepassword"))
-
     app.run(debug=True)

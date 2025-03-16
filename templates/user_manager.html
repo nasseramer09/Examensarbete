@@ -1,0 +1,44 @@
+{%extends "base.html" %}
+{% block body %}
+
+<div class="userManagmentContainer">
+    <div class="managment-box"> 
+
+        <h2>Hantera Konton </h2>
+
+        <div class="tabs">
+            
+            <button class="tablink" onclick="openTab(event, 'createAccount')"> Skapa konto </button>
+            <button class="tablink" onclick="openTab(event, 'resetPassword')"> Återställ lösenord </button>
+            <button class="tablink" onclick="openTab(event, 'viewUsers')"> Vissa användare</button>
+
+        </div>
+    </div>
+
+    <div id="createAccount" class="tabcontent">
+        <h3> Skapa Nytt Konto </h3>
+        <form action="/register" method="POST">
+
+            <label for="fName"> Förnamn  </label>
+            <input type="text" id="fullName" name="firstName" placeholder=" förnamn " required>
+
+            <label for="lName"> Efternamn </label>
+            <input type="text" id="fullName" name="lastName" placeholder=" Efternamn " required>
+             
+            <label for="userName"> Användarnamn </label>
+            <input type="text" id="fullName" name="userName" placeholder="Admin123" required>
+
+            <label for="password"> Lösenord </label>
+            <input type="password" id="password" name="password" placeholder=" Välj lösenord som är stark" required>
+            <label for="role">Välje role</label>
+            <select name="role" id="role">
+                <option value="admin"> Admin </option>
+                <option value="personal"> personal </option>
+            </select>
+            <button type="submit"> Skapa konto </button>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

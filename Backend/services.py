@@ -1,19 +1,23 @@
-import hashlib
-import flask 
+from werkzeug.security import generate_password_hash, check_password_hash
 from db.connectionToDataBase import DataBaseConnection
 
 class AuthenticationServices():
 
     @staticmethod
-    def createAcount(firstName:str, lastName:str, userName:str , password:int, role:str):
+    def createAcount(firstName:str, lastName:str, userName:str , password:str, role:str):
         conn = DataBaseConnection.get_db_connection()
         cursor = conn.cursor()
-        hashed_password=hashlib.sha256(password.encode()).hexdigest()
+
+        hashed_password= generate_password_hash(password)
+        fornamn, efternamn,anvandarnamn, rolen =map(str.lower,[firstName, lastName, userName, role])
+                                      
+        
+
         cursor.execute(
             """
             INSERT INTO users (first_name, last_name, username, password_hash, role)
             VALUES (%s, %s, %s, %s, %s)
-            """, (firstName, lastName, userName, hashed_password, role)
+            """, (fornamn, efternamn, anvandarnamn, hashed_password, rolen)
         )
 
         conn.commit()
@@ -23,23 +27,36 @@ class AuthenticationServices():
         
 
     @staticmethod
-    def login(userName:str, password:int):
+    def login(userName:str, password):
         conn = DataBaseConnection.get_db_connection()
-        cursor=conn.cursor(dictionary=True)
+        cursor = conn.cursor(dictionary=True)
+        userName=userName.strip().lower()
 
-        hashed_password = hashlib.sha256(password.encode()).hexdigest()
 
         cursor.execute(
-            " SELECT * FROM users WHERE username = %s AND password_hash = %s",
-            (userName, hashed_password)
-        )
+            " SELECT * FROM users WHERE username = %s", (userName, ))
 
         user = cursor.fetchone()
         cursor.close()
         conn.close()
 
-        if user and hashlib.sha256(password.encode()).hexdigest()==user['password']:
+        if user and check_password_hash(user['password_hash'], password):
             return {"message": "Success", "role":user['role']}
         else:
-            return{"message":"Wrong username or password "}
+            return{"message":" Wrong username or password "}
+    
+    @staticmethod
+    def user_managment():
+        conn = DataBaseConnection.get_db_connection()
+        cursor = conn.cursor(dictionary=True)
+
+        cursor.execute(
+            " SELECT * FROM users " )
+
+        users = cursor.fetchall()
+        cursor.close()
+        conn.close()
+
+       
+        return users
         
