@@ -1,18 +1,13 @@
 {% extends "base.html" %}
-{% block head%}
+{% set no_layout = True %}
+
+{% block no_layout_content %}
 <div class="login-container">
-
-    
-
-    <div class="login-box">
-        
-        <header>
-        <h2> TaskIT</h2>
-    </header>
-
+    <div class="login-box"> 
+    <header><h2> TaskIT</h2></header>
     <p class="guide">Logga in för att komma igång</p>
+
         <form action="/" method="post">
-        
             <label id="userNamelabel"> Användarnamn: </label>
             <input id="userNamePholder",
             name="username",
@@ -32,7 +27,7 @@
         <h5> <a href="http:127.0.0.1:5000/login">glömt lösenord </h5></a>
     </div>
     <div class="recoverPassword">
-        <h5> <a href="{{url_for('routes.user_managment')}}">Create Account </h5></a>
+        <h5> <a href="{{url_for('routes.manage_accounts')}}">Create Account</a>
     </div>
 </div>
 </div>

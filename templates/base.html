@@ -2,24 +2,38 @@
 <html lang="sv">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", initial-scale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title> TaskIT </title>
-   
+    <title>TaskIT</title>
 </head>
-<body> 
-{% block head %}
 
-{% endblock %}
+    <body> 
+        {% if no_layout is defined and no_layout %}
+        {% block no_layout_content %}{% endblock %}
+        {% else %}
+        <div class="layout">
+                <!--Side bar -->
+                <nav class="sidebar">
+                    
+                    <div class="logo"> 🚌 Din Kvalité </div>
+                    <h1>Välkommen, {{session['username']}} </h1>
+                    <ul class="nav-links">
+                        <li> <a href="#">Översikt</a> </li>
+                        <li> <a href="#">Schema</a> </li>
+                        <li> <a href="#">Personal</a> </li>
+                        <li> <a href="#">Arikv</a> </li>
+                    </ul>
+                    <form action="{{url_for('routes.logout')}}" method="post"> 
+                        <button type="submit" class="logout" >Logga ut</button>
+                    </form>
+                </nav>
 
-{% block main %}
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+        
+        </div>
+        {% endif %}
 
-{% endblock %}
-
-
-{% block body %}
-
-{% endblock %}
-
-</body>
+    </body>
 </html>

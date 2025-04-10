@@ -26,6 +26,11 @@ def login():
         
     return render_template('login.html')
 
+@routes.route('/logout', methods=['GET' , 'POST'])
+def logout():
+    session.clear()
+    return redirect(url_for('routes.login'))
+
 @routes.route('/register', methods=['GET','POST'])
 def register():
 
@@ -36,30 +41,24 @@ def register():
         password=request.form['password']
         role=request.form['role']
         AuthenticationServices.createAcount(firstName,lastName,userName,password,role)
-        return redirect(url_for('/routes.login'))
+        return redirect(url_for('routes.login'))
     
-    return redirect(url_for('user_managment'))
+    return redirect(url_for('user_manager'))
 
 
 @routes.route('/user_manager')
-def user_managment():
+def manage_accounts():
 
     users = AuthenticationServices.user_managment()
     
     return render_template('user_manager.html')
-
-
-
-
-    
 
 #check the role of the user and redirect to pages aloweed access based on role
 @routes.route('/checkRole' )
 def checkRole():
    print(session)
    if 'username' not in session:
-       print("no username in session redirecting to login page")
        return redirect(url_for('routes.login'))
 
-   return render_template('home.html', userName=session['username'], role=session['role'])
+   return render_template('home.html')
    
