@@ -1,69 +1,91 @@
-body{
-    background-color: #f8f9f9;
-    margin: 0;
-    padding: 0;
-}
 
-#header{
-    background-color: #502c50;
-    color: white;
-    padding: 20px;
+.layout{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    flex-wrap: wrap;
+    flex-direction: row;
+    min-height: 100vh;
+}
+.sidebar{
+ width: 220px;
+ background-color: #502c50 ;
+ padding: 30px;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-evenly;
+ position: fixed;
+ height: 100vh;
+ border: 1px solid blue;
 }
 
-#header h1{
-    
-    margin: 0;
-    font-size: 24px;
+.logo{
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
 }
 
-.homeNav ul{
+.nav-links{
     list-style: none;
     padding: 0;
     display: flex;
-    gap: 20px;
+    flex-direction: column;
+    gap: 15px;
 }
 
-.homeNav li{
-    cursor: pointer;
-    padding: 8px 12px;
-    font-size: 18px;
-    display: inline-block;
+.nav-links a{
+    text-decoration: none;
+    padding: 10px;
+    color:white;
+    border-radius: 5px;
     transition: 0.3s;
 }
 
-.homeNav li:hover{
-    background-color: #34495e;
-    border-radius: 5px;
+.nav-links a:hover{
+   background-color: #cdd1d4;
 }
 
-.logOut{
-    background-color: #e74c3c;
+.logout{
+    background-color:#f0625d ;
     color: white;
     border: none;
-    padding: 8px 12px;
+    padding: 10px;
     cursor: pointer;
     transition: 0.3s;
-    position: absolute;
-    right: 20px;
-    top: 20px;
+    margin-top: auto;
 }
 
-.logOut:hover{
-    background-color: #c0392b;
+.logout:hover{
+    background-color: white;
+    color: black;
+    
 }
 
 /*Dashboard styling */
-.container{
-padding: 20px;
+.main-content{
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    flex:1;
+    padding: 30px;
+
+    
+}
+.main-content-inner{
+    padding: 20px;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.dashboard-container{
 display: flex;
-flex-wrap: wrap;
-align-items: flex-start;
-justify-content: center;
+flex-direction: column;
+gap: 30px;
+
+}
+
+h1{
+    color: white ;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .row{
@@ -190,27 +212,3 @@ justify-content: center;
     text-decoration: underline;
 
 }
-
-
- @media screen and (max-width: 768px ) {
-
-    .row{
-        flex-direction: column;
-        align-items: center;
-    }
-    .homeNav ul{
-            flex-direction: column;
-            text-align: center;
-            gap: 10px;
-    }
-
-    #header{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .logOut{
-        width: 100%;
-    }
-    
- }

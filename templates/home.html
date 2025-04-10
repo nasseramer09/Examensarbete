@@ -1,31 +1,18 @@
 {% extends "base.html" %}
 
-{% block head %}
-<div id="header">
-<nav class="homeNav">
-   <ul>
-  <li>
-    
-  <a href="#"> Översikt </a>
-  <a href="#"> Schema </a>
-  <a href="#"> Personal </a>
-  <a href="url_for{{('manage_accounts')}} "> Hantera Konton </a>
-  <a href="#"> Arikv </a>
-</li>
-</ul> 
-<button class="logOut" onclick="loggaout()"> Logga ut </button>
-</nav>
-</div>
+{% block content %}
 
-{% endblock %}
 
-{% block body %}
-<div class="container">
+<div class="dashboard-container">
+  
   <div class="row">
-<div class="card">
-  <h4> Totalt uppdrag </h4>
-  <p id="totalUppdrag"> Loading.... </p>
-</div>
+
+  <div class="card">
+
+    <h4> Totalt uppdrag </h4>
+    <p id="totalUppdrag"> Loading.... </p>
+
+  </div>
 
 <div class="card">
   <h4> Activa uppdrag </h4>

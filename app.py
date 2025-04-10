@@ -12,3 +12,4 @@ app.secret_key=os.getenv("FLASK_SECRET_KEY", "default_secret")
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
