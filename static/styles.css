@@ -4,6 +4,7 @@
     flex-direction: row;
     min-height: 100vh;
 }
+
 .sidebar{
  width: 220px;
  background-color: #502c50 ;
@@ -21,6 +22,7 @@
     margin-bottom: 20px;
     font-size: 20px;
     text-align: center;
+    color: rgb(255, 255, 255);
 }
 
 .nav-links{
@@ -31,16 +33,17 @@
     gap: 15px;
 }
 
-.nav-links a{
+.nav-links li a{
     text-decoration: none;
     padding: 10px;
     color:white;
     border-radius: 5px;
     transition: 0.3s;
+    display: block;
 }
 
-.nav-links a:hover{
-   background-color: #cdd1d4;
+.nav-links li a:hover{
+   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .logout{
@@ -96,7 +99,7 @@ h1{
     gap: 20px;
 }
 .card{
-    background-color: white;
+    background-color: #502c50 ;;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
@@ -106,12 +109,13 @@ h1{
 
 .card h4{
     margin-bottom: 10px;
-    color: #2c3e50;
+    color: white;
+    font-size: large;
 }
 .card p{
    font-size: 20px;
    font-weight: bold;
-   color: #2c3e50;
+   color: white;
 }
 
 .tasksContainer {
@@ -136,7 +140,7 @@ h1{
 }
 
 .table th{
-   background-color: #2c3e50;
+   background-color: #502c50 ;;
    color: white;
 
 }
@@ -158,18 +162,19 @@ h1{
 }
 
 .login-box{
-    background-color: #d5b6b2;
+    background-color: #502c50;
     padding: 40px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     width: 100%;
     max-width: 400px;
     text-align: center;
+    color: white;
 }
 
 .login-box h2{
   margin-bottom: 20px;
-  color: #2c3e50;
+  
 }
 
 .login-box input{
@@ -182,7 +187,7 @@ h1{
 }
 
 .login-box button{
-    background-color: #2c3e50;
+    background-color: rgb(193, 103, 103);
     color: white;
     padding: 12px;
     border: none;
@@ -211,4 +216,138 @@ h1{
     
     text-decoration: underline;
 
+}
+
+.userManagmentContainer {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    
+}
+
+.managment-box {
+    margin-bottom: 30px;
+}
+
+.managment-box h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.tablink {
+    background-color: #502c50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.tablink:hover {
+    background-color: #3a1f3a;
+    transform: translateY(-2px);
+}
+
+.tablink.active {
+    background-color: #f0625d;
+}
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tabcontent.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.tabcontent h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.tabcontent form {
+    display: grid;
+    gap: 20px;
+}
+
+.tabcontent label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.tabcontent input,
+.tabcontent select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.tabcontent input:focus,
+.tabcontent select:focus {
+    outline: none;
+    border-color: #502c50;
+    box-shadow: 0 0 0 2px rgba(80, 44, 80, 0.2);
+}
+
+.tabcontent button[type="submit"] {
+    grid-column: 1 / -1;
+    background-color: #502c50;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.tabcontent button[type="submit"]:hover {
+    background-color: #3a1f3a;
+}
+
+/* Responsiv design */
+@media (max-width: 768px) {
+    .tabcontent form {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabs {
+        flex-direction: column;
+    }
+}
+
+.createAccount{
+    display: flex;
+    background-color: #1a252f;
 }

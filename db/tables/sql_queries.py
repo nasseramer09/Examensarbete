@@ -14,7 +14,7 @@ class Table_Creation:
                     username VARCHAR(50) UNIQUE NOT NULL,
                     password_hash VARCHAR(255) NOT NULL,
                     phone_number VARCHAR (50) NOT NULL,
-                    role ENUM('admin', 'staff') NOT NULL,
+                    role ENUM('admin', 'personal') NOT NULL,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     )
                     """)
@@ -60,6 +60,7 @@ class Table_Creation:
         connection.commit()
         cursor.close()
         connection.close()
+        
     @staticmethod
     def create_All_Tables():
         Table_Creation.create_users_table()

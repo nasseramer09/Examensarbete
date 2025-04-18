@@ -1,5 +1,5 @@
 {%extends "base.html" %}
-{% block body %}
+{% block content %}
 
 <div class="userManagmentContainer">
     <div class="managment-box"> 
@@ -17,7 +17,7 @@
 
     <div id="createAccount" class="tabcontent">
         <h3> Skapa Nytt Konto </h3>
-        <form action="/register" method="POST">
+        <form action="/register" method='POST'>
 
             <label for="fName"> Förnamn  </label>
             <input type="text" id="fullName" name="firstName" placeholder=" förnamn " required>
@@ -32,11 +32,64 @@
             <input type="password" id="password" name="password" placeholder=" Välj lösenord som är stark" required>
             <label for="role">Välje role</label>
             <select name="role" id="role">
-                <option value="admin"> Admin </option>
-                <option value="personal"> personal </option>
+                <option value='admin'> Admin </option>
+                <option value='personal'> personal </option>
             </select>
             <button type="submit"> Skapa konto </button>
         </form>
+    </div>
+
+    <div id="resetPassword" class="tabcontent">
+        <h3> Återställ lösenord </h3>
+        <form action="/#" method='POST'>
+
+            <label for="email"> E-post </label>
+            <input type="email" id="email" name="email" placeholder="test.testsson@taskit.com" required>
+
+            <label for="userName"> Användarnamn </label>
+            <input type="text" id="fullName" name="userName" placeholder="Admin123">
+
+            <label for="password"> Lösenord </label>
+            <input type="password" id="newpassword" name="newpassword" placeholder=" Välj lösenord som är stark" required>
+
+            <label for="password"> Lösenord </label>
+            <input type="password" id="repetedpassword" name="repetedpassword" placeholder=" Bekräfta lösenord" required>
+            
+            <button type="submit"> Återställ lösenord </button>
+        </form>
+    </div>
+
+    <div id="viewUsers" class="tabcontent">
+       
+        <h3> Users </h3>
+        <div class="tasksContainer">
+            <table class="table" > 
+          
+              <thead>
+                <tr>
+                  <th> Förnamn </th>
+                  <th> Efternamn </th>
+                  <th> Användarnamn </th>
+                  <th> Role </th>
+                  <th> Skapad </th>
+                </tr>
+              </thead>
+
+              <tbody id="tbody">
+                {% for user in users %}
+                <tr>
+                  <td class="text-center"> {{user['first_name']}} </td>
+                  <td class="text-center"> {{user['last_name']}} </td>
+                  <td class="text-center"> {{user['username']}} </td>
+                  <td class="text-center"> {{user['role']}} </td>
+                  <td class="text-center"> {{user['created_at']}} </td>
+                  
+                </tr>
+                {% endfor %}
+              </tbody>
+
+            </table>
+          </div>
     </div>
 
 </div>

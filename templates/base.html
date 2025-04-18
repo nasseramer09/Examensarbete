@@ -15,13 +15,12 @@
                 <!--Side bar -->
                 <nav class="sidebar">
                     
-                    <div class="logo"> 🚌 Din Kvalité </div>
-                    <h1>Välkommen, {{session['username']}} </h1>
+                    <div class="logo"> TaskIT </div>
+                    <h1>Välkommen, {{session['username']}} </h1> 
                     <ul class="nav-links">
-                        <li> <a href="#">Översikt</a> </li>
+                        <li> <a href="{{url_for('routes.checkRole')}}">Översikt</a> </li>
                         <li> <a href="#">Schema</a> </li>
-                        <li> <a href="#">Personal</a> </li>
-                        <li> <a href="#">Arikv</a> </li>
+                        <li> <a href="{{url_for('routes.manage_accounts')}}">Hantera Perosnal </a> </li>                       <li> <a href="#">Arikv</a> </li>
                     </ul>
                     <form action="{{url_for('routes.logout')}}" method="post"> 
                         <button type="submit" class="logout" >Logga ut</button>
@@ -34,6 +33,6 @@
         
         </div>
         {% endif %}
-
+<script src="{{url_for('static', filename='js/tabs.js')}}"></script>
     </body>
 </html>

@@ -1,11 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, session, url_for
-
+from flask import Blueprint, render_template, request, redirect, session, url_for 
 from Backend.services import AuthenticationServices
-
+from db.query_functionalities import Query_functionalities
 routes = Blueprint("routes", __name__, template_folder="templates")
-
-
-
 
 @routes.route('/', methods=['GET', 'POST'])
 def login():
@@ -40,7 +36,7 @@ def register():
         userName=request.form['userName']
         password=request.form['password']
         role=request.form['role']
-        AuthenticationServices.createAcount(firstName,lastName,userName,password,role)
+        AuthenticationServices.createAcount( firstName, lastName, userName, password, role)
         return redirect(url_for('routes.login'))
     
     return redirect(url_for('user_manager'))
@@ -48,10 +44,9 @@ def register():
 
 @routes.route('/user_manager')
 def manage_accounts():
-
-    users = AuthenticationServices.user_managment()
-    
-    return render_template('user_manager.html')
+    q_funcs = Query_functionalities()
+    all_Users = q_funcs.get_users()
+    return render_template('user_manager.html', users=all_Users)
 
 #check the role of the user and redirect to pages aloweed access based on role
 @routes.route('/checkRole' )

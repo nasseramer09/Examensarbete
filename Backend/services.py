@@ -9,10 +9,13 @@ class AuthenticationServices():
         cursor = conn.cursor()
 
         hashed_password= generate_password_hash(password)
-        fornamn, efternamn,anvandarnamn, rolen =map(str.lower,[firstName, lastName, userName, role])
-                                      
+        fornamn=firstName.lower()
+        efternamn=lastName.lower()
+        anvandarnamn=userName.lower()
+        rolen = role.strip().lower()
         
-
+        
+        print(f"Försöker infoga roll: '{rolen}'")
         cursor.execute(
             """
             INSERT INTO users (first_name, last_name, username, password_hash, role)
@@ -34,7 +37,7 @@ class AuthenticationServices():
 
 
         cursor.execute(
-            " SELECT * FROM users WHERE username = %s", (userName, ))
+            " SELECT * FROM users WHERE username = %s", (userName ))
 
         user = cursor.fetchone()
         cursor.close()
@@ -43,20 +46,6 @@ class AuthenticationServices():
         if user and check_password_hash(user['password_hash'], password):
             return {"message": "Success", "role":user['role']}
         else:
+
             return{"message":" Wrong username or password "}
-    
-    @staticmethod
-    def user_managment():
-        conn = DataBaseConnection.get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-
-        cursor.execute(
-            " SELECT * FROM users " )
-
-        users = cursor.fetchall()
-        cursor.close()
-        conn.close()
-
-       
-        return users
         
