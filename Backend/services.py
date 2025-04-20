@@ -37,7 +37,7 @@ class AuthenticationServices():
 
 
         cursor.execute(
-            " SELECT * FROM users WHERE username = %s", (userName ))
+            " SELECT * FROM users WHERE username = %s", (userName, ))
 
         user = cursor.fetchone()
         cursor.close()
